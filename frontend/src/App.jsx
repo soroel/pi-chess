@@ -36,6 +36,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Navbar from './components/navbar.jsx';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -44,10 +45,12 @@ function App() {
     axios.get('http://localhost:8000/api/hello/')
       .then(response => setMessage(response.data.message))
       .catch(error => console.error(error));
+      setMessage('Failed to fetch message from API');
   }, []);
 
   return (
     <div>
+      <Navbar />
       <h1>{message}</h1>
     </div>
   );
